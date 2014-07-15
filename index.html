@@ -3,11 +3,35 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Login</title>
+		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
+		<script src="jquery-2.1.1.min.js"></script>
 		<script type="text/javascript">
+			var $j = jQuery;
 			function login()
 			{
-				alert('todo');
+				var username = $j('#txtUsername').val();
+				var password = $j('#txtPassword').val();
+				
+				alert('u: '+username+'   p: '+password);
 			}
+			
+			/*
+			var url = "https://scorching-fire-8816.firebaseio.com/";
+			var db = new Firebase(url);
+			
+			var myDataRef = new Firebase(url);
+			myDataRef.set('User ' + name + ' says ' + text);
+			myDataRef.set({name: name, text: text});
+			myDataRef.push({name: name, text: text});
+			
+			myDataRef.on('child_added', function(snapshot) {
+				var message = snapshot.val();
+				displayChatMessage(message.name, message.text);
+			});
+			
+
+			*/
 		</script>
 	</head>
 	<body>
