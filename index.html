@@ -7,6 +7,9 @@
 		<script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
 		<script src="jquery-2.1.1.min.js"></script>
 		<script type="text/javascript">
+			if (document.location.protocol != 'https:' && document.location.hostname != 'localhost)
+				document.location.protocol = 'https:';
+		
 			var $j = jQuery;
 			function login()
 			{
@@ -15,6 +18,7 @@
 				
 				alert('u: '+username+'   p: '+password);
 			}
+			
 			
 			/*
 			var url = "https://scorching-fire-8816.firebaseio.com/";
