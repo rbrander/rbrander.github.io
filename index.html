@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- <meta property="og:image" content="http://lipis.github.io/bootstrap-social/assets/img/bootstrap-social.png" /> -->
+		<!-- <meta property="og:image" content="bootstrap-social.png" />-->
 		<title>Login</title>
+		
 		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
-		<script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.6.1/firebase-simple-login.js'></script>
-		<script src="jquery-2.1.1.min.js"></script>
+		<link href="bootstrap-social.css" rel="stylesheet" >
+		<link href="font-awesome.css" rel="stylesheet" >
+		
+		<script type="text/javascript" src="https://cdn.firebase.com/js/client/1.0.17/firebase.js"></script>
+		<script type="text/javascript" src="https://cdn.firebase.com/js/simple-login/1.6.1/firebase-simple-login.js"></script>
+		<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
 		<script type="text/javascript">
-			
+			// SSL redirect
 			if (document.location.protocol != 'https:' && document.location.hostname != 'localhost')
 				window.location.replace('https:'+document.location.href.slice(document.location.protocol.length));
+		
 		
 			var $j = jQuery;
 			var url = "https://scorching-fire-8816.firebaseio.com/";
 			var auth;
 			var db;
-			
 			
 			$j(function() {
 				db = new Firebase(url);
@@ -51,33 +58,6 @@
 				auth.login(provider);
 			}
 			
-			/*
-			function dologin()
-			{
-				var username = $j('#txtUsername').val();
-				var password = $j('#txtPassword').val();
-				
-				
-				alert('u: '+username+'   p: '+password);
-				
-				store(username, password);
-			}
-			
-			function isValid(user, pass)
-			{
-				db = new Firebase(url);
-				db.on('value', function(snapshot) {
-					var users = snapshot.val();
-					
-				});
-			}
-			
-			function store(user, pass)
-			{
-				db = new Firebase(url+'user');
-				db.set({user: user, password: pass});
-			}
-			*/
 			
 			/*
 			var url = "https://scorching-fire-8816.firebaseio.com/";
@@ -98,10 +78,14 @@
 		</script>
 	</head>
 	<body>
-		<h1>Login</h1>
-		<div>
-			<button type="button" onclick="login('google')">Google</button>
-			<button type="button" onclick="login('github')">Github</button>
+		<div class="jumbotron">
+			<h1 class="text-center">Login</h1>
+			<div class="container row">
+				<div class="col-sm-5 col-sm-offset-4">
+					<a href="javascript:void(0);" class="btn btn-block btn-social btn-lg btn-google-plus" onclick="login('google')"><i class="fa fa-google-plus"></i>Google</a>
+					<a href="javascript:void(0);" class="btn btn-block btn-social btn-lg btn-github" onclick="login('github')"><i class="fa fa-github"></i>Github</a>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
