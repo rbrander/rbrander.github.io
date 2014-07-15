@@ -5,6 +5,7 @@
 		<title>Login</title>
 		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
+		<script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.6.1/firebase-simple-login.js'></script>
 		<script src="jquery-2.1.1.min.js"></script>
 		<script type="text/javascript">
 			
@@ -12,14 +13,71 @@
 				window.location.replace('https:'+document.location.href.slice(document.location.protocol.length));
 		
 			var $j = jQuery;
-			function login()
+			var url = "https://scorching-fire-8816.firebaseio.com/";
+			var auth;
+			var db;
+			
+			
+			$j(function() {
+				db = new Firebase(url);
+				auth = new FirebaseSimpleLogin(db, function(error, user) {
+					if (error) {
+						// an error occurred while attempting login
+						console.log(error);
+					} else if (user) {
+						// user authenticated with Firebase
+						console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+						console.dir(user);
+						/*
+							github user has:
+							- id, uid, displayName, username, provider, thirdPartyUserData.avatar_url
+						*/
+						// save user
+						db = new Firebase(url + 'users');
+						db.push(user);
+						location.href = '/home.html';
+					} else {
+						// user is logged out
+						console.log('user is logged out');
+						//auth.login('github');
+					}
+				});
+				// auth.logout();
+				// auth.login('<provider>');
+			});
+				
+			function login(provider)
+			{
+				auth.login(provider);
+			}
+			
+			/*
+			function dologin()
 			{
 				var username = $j('#txtUsername').val();
 				var password = $j('#txtPassword').val();
 				
+				
 				alert('u: '+username+'   p: '+password);
+				
+				store(username, password);
 			}
 			
+			function isValid(user, pass)
+			{
+				db = new Firebase(url);
+				db.on('value', function(snapshot) {
+					var users = snapshot.val();
+					
+				});
+			}
+			
+			function store(user, pass)
+			{
+				db = new Firebase(url+'user');
+				db.set({user: user, password: pass});
+			}
+			*/
 			
 			/*
 			var url = "https://scorching-fire-8816.firebaseio.com/";
@@ -42,13 +100,8 @@
 	<body>
 		<h1>Login</h1>
 		<div>
-			<form id="frmLogin">
-				<label>Username:</label>
-				<input type="text" id="txtUsername" name="Username" maxlength="50" />
-				<label>Password:</label>
-				<input type="password" id="txtPassword" name="Password" maxlength="50" />
-				<button type="button" onclick="login()">Login</button>
-			</form>
+			<button type="button" onclick="login('google')">Google</button>
+			<button type="button" onclick="login('github')">Github</button>
 		</div>
 	</body>
 </html>
