@@ -25,13 +25,14 @@
 					} else if (user) {
 						currUser = user;
 						$j('h1').text('Yay ' + user.uid + '!');
-						$j('body').appendChild('<button type="button" onclick="logout()">Logout</button>');
+						$j('body').append('<button type="button" onclick="logout()">Logout</button>');
 					} else {
 						// not logged in
 						location.href = '/index.html';
 					}
 				});
 			});
+		</script>
 	</head>
 	<body>
 		<h1>Yay!</h1>
