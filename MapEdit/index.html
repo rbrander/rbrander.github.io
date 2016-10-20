@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Map Edit</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+</head>
+<body>
+  <h1>Map Edit</h1>
+  <div>
+    <ul>
+      <li><a href="javascript:toggleShowTiles()">Toggle Tiles</a></li>
+      <li><a href="javascript:void(0);" onClick="toggleAddRemoveTiles(event)">Remove Tile</a></li>
+      <li><a href="javascript:load()">Load</a></li>
+      <li><a href="javascript:save()">Save</a></li>
+      <li><a href="javascript:reset()">Reset</a></li>
+      <li>
+        <label for="numTilesPlacedToSetShowTiles"># tiles to place: </label>
+        <select id="numTilesPlacedToSetShowTiles" onChange="onSelectNumTilesPlaced(event)">
+          <option value="1">1</option>
+          <option value="infinite">infinite</option>
+        </select>
+      </li>
+    </ul>
+  </div>
+  <canvas id="canvas" width="1" height="1" />
+  <script type="text/javascript" src="./app.js"></script>
+  <noscript>JavaScript is required for this application</noscript>
+</body>
+</html>
